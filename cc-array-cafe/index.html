@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h3>Våra produkter:</h3>
+    <table border="1">
+        <tr>
+            <th>Produktnummer</th>
+            <th>Namn</th>
+            <th>Pris</th>
+            <th>Lagersaldo</th>
+        </tr>
+        <tbody id="products-list"></tbody>
+    </table> 
+
+
+    <script>       // 0       1       2
+    const names =  ["Kaffe", "Munk", "glass"];
+    const prices = [ 3,       3.5,     4];
+    const stock =  [100,      15,      45];
+
+    console.log(`En ${names[1]} kostar ${prices[1]} € och vi har ${stock[1]} st`);
+    
+    console.log("------")
+    for (let i = 0; i < names.length; i++) {
+        console.log(`En ${names[i]} kostar ${prices[i]} € och vi har ${stock[i]} st`);        
+    }
+
+    const products = [
+        { name: "Kaffe", price: 3,   stock: 100 },
+        { name: "Munk",  price: 3.5, stock: 15 },
+        { name: "Glass",  price: 4, stock: 45 },
+    ];
+
+    console.log("------")
+    for (const product of products) {
+        console.log(`En ${product.name} kostar ${product.price} € och vi har ${product.stock} st`);        
+    }  
+    
+    console.log("------")
+    for (const i in products) {
+        document.querySelector('#products-list').innerHTML += `
+            <tr>
+                <td>${1+Number(i)}</td>
+                <td>${products[i].name}</td>
+                <td>${products[i].price} €</td>
+                <td>${products[i].stock} st</td>
+            </tr>
+        `;
+    }
+
+
+
+
+    </script>
+</body>
+</html>
