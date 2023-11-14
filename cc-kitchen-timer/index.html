@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Äggklocka</title>
+</head>
+<body>
+    <input type="text" id="tid" placeholder="Sekunder">
+    <span id="out"></span> <br>
+    <button type="button" id="start-stop" onclick="toggleTimer()">Start/Stop</button>
+    
+    <script>
+    let sekunderKvar = 0;
+
+    let myTimer = null;
+
+    function toggleTimer() {
+        if (!myTimer) {
+            sekunderKvar = document.querySelector('#tid').value;
+            myTimer = setInterval(timerHandler, 1000);
+        } else {
+            clearInterval(myTimer);
+            myTimer = null;
+        }        
+    }
+
+    function timerHandler() {
+        const minuterKvar = Math.floor(sekunderKvar/60);
+        const sekunderKvarMod = sekunderKvar % 60;
+
+        console.log(sekunderKvar);
+        document.querySelector('#out').innerHTML = `${minuterKvar} min ${sekunderKvarMod} sek`;
+
+        if (sekunderKvar <= 0) {
+            clearInterval(myTimer);
+            myTimer = null;
+        }
+        sekunderKvar--;
+    }
+
+
+    
+
+    </script>
+</body>
+</html>

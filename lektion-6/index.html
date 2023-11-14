@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lektion 6</title>
+    <style>
+        #h { cursor: pointer; }
+        .clickable { color: navy; }
+    </style>
+
+</head>
+<body>
+    <h2 id="h">Lektion 6</h2>
+
+    <button type="button" id="btn-reset">Reset</button>
+    
+    <div id="div-1" class="clickable">
+        Ett <span id="span-1">(text i span)</span>
+    </div> 
+    <div id="div-1" class="clickable">Två</div>
+    <div id="div-1" class="clickable">Tre</div>
+
+    <ul id="lista">
+        <b>Lista:</b>
+        <li>första</li>
+        <li>andra</li>
+        <li>tredje</li>
+    </ul>
+
+
+    <p>
+        <select id="dropdown">
+            <option value="black">Svart</option>
+            <option value="red">Röd</option>
+            <option value="lime">Grön</option>
+            <option value="blue">Blå</option>
+        </select>
+        <span id="dropdown-output">Hello</span>
+    </p>
+
+    <p>Välj ett tal <input id="nummer" type="number"></p>
+
+    <p>Välj datum: <input id="datum" type="date"></p>
+
+    <p>
+        <input id="slider" type="range" min="0" max="100" step="1">
+        <span id="slider-out"></span>
+    </p>
+
+    <p>
+        <textarea id="long-text" style="height: 20px;"></textarea>
+        <div id="text-out"></div>
+    </p>
+
+    <p>
+        <input id="check" type="checkbox" value="1"> Jag godkänner allt!
+        <div id="check-output"></div>
+    </p>
+
+
+
+
+
+
+
+    <script src="lektion-6.js"></script>
+</body>
+</html>
