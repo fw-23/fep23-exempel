@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #thumbnails img {
+            cursor: pointer;
+            max-height: 100px;
+        }
+        #lightbox {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+    </style>
+</head>
+<body>
+    Vad heter du? <input id="namn" type="text">
+    <input type="button" value="OK" onclick="saveName()">
+    <p id="greeting"></p>
+    
+    <div id="thumbnails">
+        <img src="img/katt-1-thumb.jpg" data-fullsize="img/katt-1.jpg">
+        <img src="img/katt-2-thumb.jpg" data-fullsize="img/katt-2.jpg">
+        <img src="img/katt-3-thumb.jpg" data-fullsize="img/katt-3.jpg">
+    </div>
+
+    <div id="lightbox"><img src="img/spinner.gif"></div>
+
+    <script>
+        function openLightbox(elem) {
+            const bigImg = elem.dataset.fullsize;
+                // funkar också: elem.getAttribute("data-fullsize")
+            console.log(bigImg);
+            document.querySelector('#lightbox img').src = bigImg;
+            document.querySelector('#lightbox').style.display = "flex";
+        }
+        document.querySelectorAll('#thumbnails img').forEach((elem) => {
+            elem.addEventListener('click', () => openLightbox(elem));
+        });
+        document.querySelector('#lightbox').addEventListener('mousedown', () => {
+            document.querySelector('#lightbox img').src = 'img/spinner.gif';
+            document.querySelector('#lightbox').style.display = 'none';
+        });
+
+    </script>
+
+
+    <script>
+
+        // Cookies & LocalStorage:
+
+        if (localStorage.getItem("namn")) {
+            document.querySelector('#greeting').innerHTML = `
+                Välkommen tillbaka, ${localStorage.getItem("namn")}!
+            `;
+        }
+
+        function saveName() {
+            const namn = document.querySelector('#namn').value;
+
+            localStorage.setItem("namn", namn);
+
+            document.cookie = `namn=${namn}`;
+        }
+        
+    </script>
+</body>
+</html>

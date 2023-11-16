@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC saga</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <h2>Sagogenerator</h2>
+    <form method="post">
+        Huvudperson: <input id="person" type="text"><br>
+        Pronomen: 
+            <select id="pro">
+                <option>hon</option>
+                <option>han</option>
+                <option selected>hen</option>
+            </select><br>
+        Butik: <br>
+            <input name="butik" type="radio" value="mjölkbutiken" checked="checked">
+                Mjölkbutiken<br>
+            <input name="butik" type="radio" value="R-kiosken">
+                R-kiosken<br>
+        Vara: 
+        <select id="vara"></select><br>
+        <input id="generate" type="button" value="Skriv sagan">
+    </form>
+
+    <p id="out"></p>
+
+</body>
+</html>
