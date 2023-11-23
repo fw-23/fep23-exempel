@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lektion 9</title>
+</head>
+<body>
+    <h3>Dagens skämt</h3>
+    <p id="joke">...</p>
+    <hr>
+    <p id="joke-json">...</p>
+    <hr>
+
+    <!-- <img src="../cc-gubben/img/jack-open.png"> -->
+
+    <script>
+
+        const jokeURL = "https://v2.jokeapi.dev/joke/Pun?format=txt&type=single&safe-mode";
+        const jokeUrlJSON = "https://v2.jokeapi.dev/joke/Pun?type=twopart&safe-mode";
+
+
+        // det äldre fetch().then()-syntaxet
+        fetch(jokeURL)
+            .then(resp => resp.text())
+            .then(respText => {
+                console.log(respText);
+        });
+
+        // det moderna async/await-syntaxet
+        async function getJoke() {
+            const resp = await fetch(jokeURL);
+            const respText = await resp.text();
+
+            document.querySelector('#joke').innerHTML = respText;
+        }
+        getJoke();
+
+        // fetch med JSON
+        async function getJsonJoke() {
+            const resp = await fetch(jokeUrlJSON);
+            const respObj = await resp.json();
+
+            console.log(respObj);
+            document.querySelector('#joke-json').innerHTML = respObj.setup;
+
+            document.querySelector('#joke-json').innerHTML += `<p style="color: green;">
+                ${respObj.delivery}
+            </p>`;
+
+        }
+        getJsonJoke();
+
+        // JSON
+        const bulle = { produkt: "bulle", pris: 2.5 };
+        console.log(bulle);
+        const bulleJSON = JSON.stringify(bulle); 
+        console.log(bulleJSON);
+        const bulleObjektIgen = JSON.parse(bulleJSON);
+        console.log(bulleObjektIgen);
+
+        console.log("sista raden");
+    </script>
+
+    
+</body>
+</html>

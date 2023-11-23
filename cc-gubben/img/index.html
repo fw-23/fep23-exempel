@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gubben i lådan</title>
+</head>
+<body>
+    <img id="jack" src="jack-closed.png" style="width: 200px;">
+
+    <input id="slider" type="range" min="0" max="100" value="0">
+
+    <script>
+
+        const jack = document.querySelector('#jack');
+        let jackIsOpen = false;
+
+        function openJack() {
+            jack.src = 'jack-open.png';
+            document.body.style.backgroundColor = 'yellow';
+            jackIsOpen = true;
+        }
+        function closeJack() {
+            jack.src = 'jack-closed.png';
+            document.body.style.backgroundColor = 'white';
+            jackIsOpen = false;
+        }        
+
+        jack.addEventListener('mousedown', () => {
+            openJack();
+        });
+        jack.addEventListener('mouseup', () => {
+            closeJack();
+        });
+
+        // 2: Slider
+        document.querySelector('#slider').addEventListener('input', (evt) => {
+            console.log(evt.target.value)
+            if (!jackIsOpen && evt.target.value > 70) {
+                openJack();
+            } else if (jackIsOpen && evt.target.value <= 70) {
+                closeJack();
+            }
+        });
+
+        // 3: setTimeout
+        setTimeout(() => {
+            openJack();
+            setTimeout(closeJack, 2000)
+        }, 1500);
+
+
+    </script>
+
+</body>
+</html>
