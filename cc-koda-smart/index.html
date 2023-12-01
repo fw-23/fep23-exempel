@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koda smart</title>
+</head>
+<body>
+   <select id="sel">
+        <option>--- välj språk ---</option>
+        <option>C</option>
+        <option>Java</option>
+        <option>Python</option>
+    </select>
+    <div id="out"></div>
+    <hr>
+    <select id="sel2">
+        <option>--- välj språk ---</option>
+        <option value="c">C</option>
+        <option value="java">Java</option>
+        <option value="python">Python</option>
+    </select>
+    <div id="out2"></div>
+    <hr>
+    <select id="sel3">
+        <option>--- välj språk ---</option> <!-- 0 -->
+        <option>C</option> <!-- 1 -->
+        <option>Java</option> <!-- 2 -->
+        <option>Python</option> <!-- 3 -->
+    </select>
+    <div id="out3"></div>
+    <hr>
+    <select id="sel4">
+        <option>--- välj språk ---</option>
+    </select>
+    <div id="out4"></div>
+
+    <script>
+        // se lösning 4 nedan
+        const langArrObj = [
+            { val: "c", info: "C är ett kompilerat språk." },
+            { val: "java", info: "Java fungerar på en virtuell maskin" },
+            { val: "python", info: "Python är ett interpreterat språk." }
+        ];
+        for (const lang4 of langArrObj) {
+            document.querySelector('#sel4').innerHTML += `
+                    <option value="${lang4.val}">${lang4.val}</option>
+            `;
+        }
+
+        document.querySelector('body').addEventListener('change', () => {
+            const lang = document.querySelector('#sel').value;
+            const out = document.querySelector('#out');
+            console.log(lang);
+
+            // lösning 1: if-satser
+            // nackdel 1: dålig skalbarhet, lägga till språk kräver ändring i logiken
+            // nackdel 2: informationen om språken är inte tillgänglig i hela appen
+            // fördel: lätt att förstå!
+            if (lang == 'C') {
+                out.innerText = 'C är ett kompilerat språk.';
+            } else if (lang == 'Java') {
+                out.innerText = 'Java fungerar på en virtuell maskin.';
+            } else if (lang == 'Python') {
+                out.innerText = 'Python är ett interpreterat språk.';
+            }
+           
+            // lösning 2: objekt
+            // snyggt och koncist!
+            // nackdel? Objekt har ingen garanterad inre ordningsföljd
+            const langObj = {
+                c: "C är ett kompilerat språk.",
+                java: "Java fungerar på en virtuell maskin.",
+                python: "Python är ett interpreterat språk."
+            }
+            console.log(langObj)
+            const lang2 = document.querySelector('#sel2').value;
+            console.log(lang2);
+            document.querySelector('#out2').innerHTML = langObj[lang2];
+
+            // lösning 3: array
+            const langArr = [
+                "C är ett kompilerat språk.",
+                "Java fungerar på en virtuell maskin.",
+                "Python är ett interpreterat språk."
+            ];
+            // selectedIndex behandlar select-options som en array
+            const langIndex = document.querySelector('#sel3').selectedIndex;
+            document.querySelector('#out3').innerHTML = langArr[langIndex];
+
+            // lösning 4: array av objekt (se ovan!)
+            // nackdel: inte lika koncis som vissa andra
+            // fördel: mycket mångsidig!
+            console.log(langArrObj)
+            
+            const langIndex4 = document.querySelector('#sel4').selectedIndex;
+            if (langIndex4 > 0) { // vi vill inte ha med "välj språk"
+                document.querySelector('#out4').innerHTML = langArrObj[langIndex4-1].info;
+            }
+        });
+        
+
+
+
+    </script>
+
+</body>
+</html>

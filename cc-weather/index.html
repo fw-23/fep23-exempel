@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC-vedervärdigt</title>
+</head>
+<body>
+    <h3>Vädret just nu i H-fors</h3>
+
+    <div id="weather"></div>
+
+    <script>
+        const lat = 60, lon = 25;
+        const weatherURL = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&wind_speed_unit=ms`;
+
+        async function getWeather() {
+            const resp = await fetch(weatherURL);
+            const data = await resp.json();
+
+            document.querySelector('#weather').innerHTML = `
+                Det är ${data.current_weather.temperature} 
+                ${data.current_weather_units.temperature}
+                och det blåser ${data.current_weather.windspeed} 
+                ${data.current_weather_units.windspeed}
+            `;
+        }
+        getWeather();
+
+        // IIFE (Immediately Invoked Function Expression) eller
+        // Self-Executing Anonymous Function 
+        (async () => {
+            const resp = await fetch(weatherURL);
+            const data = await resp.json();
+
+            document.querySelector('#weather').innerHTML = `
+                Det är ${data.current_weather.temperature} 
+                ${data.current_weather_units.temperature}
+                och det blåser ${data.current_weather.windspeed} 
+                ${data.current_weather_units.windspeed}
+            `;
+        })();
+
+
+
+    </script>
+</body>
+</html>
